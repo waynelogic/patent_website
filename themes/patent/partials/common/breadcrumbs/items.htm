@@ -1,6 +1,6 @@
-<ol class="flex items-center font-medium" itemscope itemtype="https://schema.org/BreadcrumbList">
+<ol class="flex flex-wrap  items-center font-medium" itemscope itemtype="https://schema.org/BreadcrumbList">
     {% for obItem in arBreadcrumbs %}
-        <li class="flex items-center duration-300 hover:text-blue-500 {{ loop.last ? 'text-primary' : 'text-gray-500' }}" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+        <li class="py-2 flex items-center duration-300 hover:text-blue-500 {{ loop.last ? 'text-primary' : 'text-gray-500' }}" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
             {% if not loop.last %}
                 {% if loop.first %}
                     {{ svg('heroicon-o-home', 'w-6 h-6 mr-4') }}
