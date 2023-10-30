@@ -8,6 +8,7 @@ default = 0
 ==
 {variable name="svg_icon" label="SVG иконка" tab="Оформление" type="text"}{/variable}
 {variable name="banner" label="Banner" tab="Оформление" type="mediafinder" mode="image"}{/variable}
+{variable name="prose_off" label="Вылючить Prose" tab="Оформление" type="checkbox"}{/variable}
 
 <!DOCTYPE html>
 <html lang="ru">
@@ -26,13 +27,17 @@ default = 0
 {#            <div class="absolute inset-0 bg-black/50 z-[-1]"></div>#}
             <div class="container py-6">
                 {% if breadcrumbs %}
-                    {% partial 'common/breadcrumbs/items' arBreadcrumbs=breadcrumbs %}
+                    {% set arBr = [{ title: 'Главная', url: '/' }] %}
+                    {% for obItem in breadcrumbs %}
+                        {% set arBr = arBr|merge([{ title: obItem.title, url: obItem.url }]) %}
+                    {% endfor %}
+                    {% partial 'common/breadcrumbs/items' arBreadcrumbs=arBr %}
                 {% endif %}
                 <h1 class="text-4xl font-semibold mt-2">{{ this.page.title }}</h1>
             </div>
         </section>
         <div class="container py-12">
-            <div class="prose prose-xl max-w-none prose-p:my-0 prose-a:duration-300 prose-a:text-violet-500 hover:prose-a:text-blue-500">
+            <div class="{{ prose_off ? '' : 'prose prose-xl max-w-none prose-p:my-0 prose-a:duration-300 prose-a:text-violet-500 hover:prose-a:text-blue-500' }}">
                 {% page %}
             </div>
         </div>

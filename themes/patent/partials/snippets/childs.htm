@@ -1,0 +1,13 @@
+[viewBag]
+snippetCode = "childs"
+snippetName = "Дочерние страницы"
+
+[childPages]
+==
+{% if childPages.pages is not empty %}
+    <div class="grid md:grid-cols-3 gap-2 mt-10 px-5">
+        {% for obItem in childPages.pages %}
+            {% partial 'instruction/list/card' url=obItem.url svg=obItem.page.svg_icon title=obItem.title description=obItem.page.meta_description %}
+        {% endfor %}
+    </div>
+{% endif %}
